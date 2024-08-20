@@ -42,21 +42,6 @@ if [[ ! -w "$REPORT_DIR" ]]; then
     printf "Cannot write to %s. Please check permissions.\n" "$REPORT_DIR"
     exit 1
 fi
-# ok so this is a little bit excessive but it works.
-if [ -e "/usr/bin/xdg-open" ]; then
-    xdg-open "$HOME/Desktop/Report"
-elif [ -e "/usr/bin/thunar" ]; then # Default XFCE
-    thunar "$HOME/Desktop/Report" # open a file browser and watch the files evolve as they come out
-elif [ -e "/usr/bin/dolphin" ]; then # Default KDE
-     dolphin "$HOME/Desktop/Report"
-elif [ -e "/usr/bin/pcmanfm" ]; then
-     pcmanfm "$HOME/Desktop/Report"
-elif [ -e "/usr/bin/spacefm" ]; then
-     spacefm "$HOME/Desktop/Report"
-else
-    echo "Can not find default file browser to open"
-fi
-
 # Function to check if the file is a BASH script and report on it
 check_scripts() {
     local file_path
