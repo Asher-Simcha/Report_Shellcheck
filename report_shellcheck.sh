@@ -31,9 +31,7 @@
 # Article: This tool is for Linux analyzes of your entire system in one pass, generating a detailed report on the condition of each script file if needed. Ideal for system administrators and developers, it ensures that every script is scrutinized for issues, providing an overview of the system's script health.
 
 # Define locations to search for potential BASH scripts
-SEARCH_LOCATIONS=("$HOME/bin" "$HOME/Desktop/myPrograms")
-# SEARCH_LOCATIONS=("/usr/bin" "$HOME/bin")
-# SEARCH_LOCATIONS=("/usr/sbin" "/sbin" "$HOME/bin" "/usr/local/bin" "/usr/bin" "/bin" )
+SEARCH_LOCATIONS=("/usr/sbin" "/sbin" "$HOME/bin" "/usr/local/bin" "/usr/bin" "/bin" )
 
 # Directory to store the reports
 REPORT_DIR="$HOME/Desktop/Report"
