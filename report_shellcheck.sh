@@ -57,7 +57,7 @@ check_scripts() {
             read -r first_line < "$file_path"
             if [[ "$first_line" =~ ^#!.*(bash|sh|ksh|zsh|ash)$ ]]; then
                 # Run shellcheck and capture the output
-                report_output=$(shellcheck --exclude SC2016 -x "$file_path")
+                report_output=$(shellcheck -x "$file_path")
                 # Check if the output is not empty
                 if [[ -n "$report_output" ]]; then
                     file=$(basename "$file_path")
