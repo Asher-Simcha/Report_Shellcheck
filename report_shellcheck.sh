@@ -14,7 +14,8 @@
 # Additional Authors: 
 # Filename: report_shellcheck.sh
 # Description: Creates a Report if there are warnings or errors in Script files
-# Additional_Notes: Creates on the User's Desktop a directory named 
+# Additional_Notes: Creates on the User's Desktop a directory named Report and for each file that 
+# Additional_Notes: needs attention creates a companion file named FILENAME.txt
 # Additional_Notes: 
 # Version: 01.03
 # Date: 08-19-2024
