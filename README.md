@@ -54,4 +54,4 @@ Contributions are welcome! Please submit a pull request or open an issue to disc
 
 ## Contact
 
-For questions or support, please contact [your email or GitHub profile].
+For questions or support, please contact (https://www.facebook.com/groups/648648643592658).
