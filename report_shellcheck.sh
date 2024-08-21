@@ -14,14 +14,17 @@
 # Additional Authors: 
 # Filename: report_shellcheck.sh
 # Description: Creates a Report if there are warnings or errors in Script files
-# Additional_Notes: Creates on the User's Desktop a directory named Report and for each file that 
-# Additional_Notes: needs attention creates a companion file named FILENAME.txt
-# Additional_Notes: 
-# Version: 01.03
+# Version: 01.04
 # Date: 08-19-2024
 # Last_Modified: 08-19-2024
 # Last_Modified: 08-20-2024
+# Last_Modified: 08-21-2024
 # Last_Modified: 
+# Additional_Notes: Creates on the User's Desktop a directory named Report and for each file that 
+# Additional_Notes: If any Script needs attention, creates a companion file named FILENAME.txt
+# Additional_Notes: Version 1.04 Now only one place to store the REPORT_DIR
+# Additional_Notes: Version 1.04 If 2 or more files by the same name are being recorded each file has an additional extension _Count (Numeral Character)
+# Additional_Notes: 
 # Source: https://github.com/Asher-Simcha/Report_Shellcheck/tree/main
 # Additional_Sources: 
 # License: The 2-Clause BSD License https://opensource.org/license/BSD-2-Clause
@@ -32,7 +35,7 @@
 # Article: This tool is for Linux analyzes of your entire system in one pass, generating a detailed report on the condition of each script file if needed. Ideal for system administrators and developers, it ensures that every script is scrutinized for issues, providing an overview of the system's script health.
 
 # Define locations to search for potential BASH scripts
-SEARCH_LOCATIONS=("/usr/sbin" "/sbin" "$HOME/bin" "/usr/local/bin" "/usr/bin" "/bin" )
+SEARCH_LOCATIONS=("/bin" "/usr/bin" "/usr/local/bin" "/usr/sbin" "/sbin" "$HOME/bin" )
 
 # Directory to store the reports
 REPORT_DIR="$HOME/Desktop/Report"
@@ -51,8 +54,10 @@ check_scripts() {
     local REPORT_DIR
     local report_file
     local file
+    local count
     file_path="$1"
-    REPORT_DIR="$HOME/Desktop/Report"
+    REPORT_DIR="$2"
+    count=1
     if file "$file_path" | grep -q "text" && [ -x "$file_path" ]; then # The file in question is a Text file and is executable
             # Read the first line to check for bash shebang
             read -r first_line < "$file_path"
@@ -63,6 +68,10 @@ check_scripts() {
                 if [[ -n "$report_output" ]]; then
                     file=$(basename "$file_path")
                     report_file="$REPORT_DIR/$file.txt"
+                    if [ -e "$report_file" ]; then
+                        report_file="${REPORT_DIR}/${file}_${count}.txt"
+                        ((count++))
+                    fi
                     printf "report_file: %s\n" "$report_file"
                     printf "file_path: %s\n" "$file_path"
                     # Attempt to write the details and output to a report file
@@ -87,7 +96,7 @@ export -f check_scripts
 # Search and process potential script files
 for location in "${SEARCH_LOCATIONS[@]}"; do
     if [ -d "$location" ]; then
-        find "$location" -type f -exec bash -c 'check_scripts "$0"' {} \;
+        find "$location" -type f -exec bash -c 'check_scripts "$1" "$2"' _ {} "$REPORT_DIR" \;
     else
         printf "Directory did not exists: %s" "$location"
     fi
