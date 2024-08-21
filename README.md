@@ -39,7 +39,12 @@ This project is licensed under the [2-Clause BSD License](https://opensource.org
     cd Report_Shellcheck
     ```
 
-3. Run the script:
+3. Make the script executable:
+    ```bash
+    chmod 0755 report_shellcheck.sh
+    ```
+
+4. Run the script:
     ```bash
     ./report_shellcheck.sh
     ```
