@@ -94,7 +94,6 @@ check_scripts() {
         else
             Exclusion1="$Exclusion1"
         fi
-        exit
         ((ThisCount++))
     fi
     if [ -n "$Exclusion2" ]; then
