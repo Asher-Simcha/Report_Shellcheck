@@ -38,8 +38,8 @@
 # 
 # DefaultFileBrowser
 # 
-# DEBUG=0
-DEBUG=1
+DEBUG=0
+# DEBUG=1
 
 # CompanyName="ashersprograms"
 CompanyNameProper="Ashers Programs.com"
