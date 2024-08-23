@@ -26,6 +26,7 @@ This project is licensed under the [2-Clause BSD License](https://opensource.org
 - Linux operating system
 - Bash shell
 - Shellcheck installed
+- For the Desktop Version yad installed
 
 ### Installation
 
