@@ -91,19 +91,25 @@ check_scripts() {
         # if exclusion is only a number then add words is not just leave as is.
         if [[ "$Exclusion1" != *"-"* ]]; then
             Exclusion1="--exclude $Exclude1"
+        else
+            Exclusion1="$Exclude1"
         fi
         ((ThisCount++))
     fi
     if [ -n "$Exclusion2" ]; then
         if [[ "$Exclusion2" != *"-"* ]]; then
             Exclusion2="--exclude $Exclude2"
+        else
+            Exclusion2="$Exclude2"
         fi
         
         ((ThisCount++))
     fi
     if [ -n "$Exclusion3" ]; then
         if [[ "$Exclusion3" != *"-"* ]]; then
-            Exclusion2="--exclude $Exclude2"
+            Exclusion3="--exclude $Exclude3"
+        else
+            Exclusion3="$Exclude3"
         fi
         ((ThisCount++))
     fi
