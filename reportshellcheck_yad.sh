@@ -156,12 +156,6 @@ check_scripts() {
 
 function Check_File_System(){
     [ "$DEBUG" -eq 1 ] && printf "Check_File_System line: %i\n" "$LINENO"
-    if [ -e "source/display_splash.sh" ]; then
-        source "source/display_splash.sh"
-    else
-        printf "Could not find source file. Exiting\n"
-        exit 2
-    fi
     DefaultFileBrowser=$(FindDefaultWebBrowser)
     if [ -x "$DefaultFileBrowser" ]; then OpenFileBrowser="TRUE"; else OpenFileBrowser="FALSE"; fi
     
@@ -185,6 +179,58 @@ function Check_File_System(){
             SplashImage=""
         fi
     fi
+}
+
+function Display_Splash() {
+    local ProgramsName
+    local CompanyNameProper
+    local Image
+    local Icon
+    local Timeout
+    Image="$1"
+    Timeout="$2"
+    Icon="$3"
+    CompanyNameProper="$4"
+    ProgramsName="$5"
+    if [ -z "$Image" ]; then # #1
+        return 1
+    fi
+    if [ -z "$Timeout" ]; then # #2
+        Timeout=7
+    fi
+    if [ -z "$Icon" ]; then # #3
+        Icon="$Image"
+    fi
+    if [ -z "$CompanyNameProper" ]; then # #4
+        CompanyNameProper="Ashers Programs.com"
+    fi
+    if [ -z "$ProgramsName" ]; then # #5
+        ProgramsName="Always On Top"
+    fi
+    if [ -e "/usr/bin/splash" ]; then
+        splash -d "$Timeout" -f "$Image" > /dev/null 2>&1 &
+        sleep 2 && Always_On_Top "splash" & 
+    else
+        yad --picture \
+        --window-icon="$Icon" \
+        --title="$ProgramsName by: $CompanyNameProper" \
+        --filename="$Image" \
+        --geometry="800x600+100+100" \
+        --on-top \
+        --no-buttons \
+        --timeout="$Timeout" \
+        --center \
+        &
+    fi
+}
+
+function Always_On_Top(){
+    [ "$DEBUG" -eq 1 ] && printf "function Always_On_Top line: %i\n" "$LINENO"
+    local ProgramOnTop
+    local WindowId
+    ProgramOnTop="$1"
+    WindowId=$(wmctrl -l | grep "$ProgramOnTop" | awk '{print $1}')
+    if [ -n "$WindowId" ]; then wmctrl -i -r "$WindowId" -b add,above; fi
 }
 
 function CreateDirectory(){
