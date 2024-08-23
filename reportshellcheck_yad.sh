@@ -156,7 +156,7 @@ check_scripts() {
 
 function Check_File_System(){
     [ "$DEBUG" -eq 1 ] && printf "Check_File_System line: %i\n" "$LINENO"
-    if [ -e "source/dislay_splash.sh" ]; then
+    if [ -e "source/display_splash.sh" ]; then
         source "source/display_splash.sh"
     else
         printf "Could not find source file. Exiting\n"
