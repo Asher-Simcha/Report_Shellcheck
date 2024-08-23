@@ -90,26 +90,29 @@ check_scripts() {
     if [ -n "$Exclusion1" ]; then
         # if exclusion is only a number then add words is not just leave as is.
         if [[ "$Exclusion1" != *"-"* ]]; then
-            Exclusion1="--exclude $Exclude1"
+            Exclusion1="--exclude $Exclusion1"
+            printf "Exclude1: %s line: %i\n" "$Exclude1" "$LINENO"
         else
-            Exclusion1="$Exclude1"
+            Exclusion1="$Exclusion1"
+            printf "Exclude1a: %s line: %i\n" "$Exclude1" "$LINENO"
         fi
+        exit
         ((ThisCount++))
     fi
     if [ -n "$Exclusion2" ]; then
         if [[ "$Exclusion2" != *"-"* ]]; then
-            Exclusion2="--exclude $Exclude2"
+            Exclusion2="--exclude $Exclusion2"
         else
-            Exclusion2="$Exclude2"
+            Exclusion2="$Exclusion2"
         fi
         
         ((ThisCount++))
     fi
     if [ -n "$Exclusion3" ]; then
         if [[ "$Exclusion3" != *"-"* ]]; then
-            Exclusion3="--exclude $Exclude3"
+            Exclusion3="--exclude $Exclusion3"
         else
-            Exclusion3="$Exclude3"
+            Exclusion3="$Exclusion3"
         fi
         ((ThisCount++))
     fi
