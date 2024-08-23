@@ -14,11 +14,12 @@
 # Additional Authors: 
 # Filename: report_shellcheck.sh
 # Description: Creates a Report if there are warnings or errors in Script files
-# Version: 01.04
+# Version: 01.05
 # Date: 08-19-2024
 # Last_Modified: 08-19-2024
 # Last_Modified: 08-20-2024
 # Last_Modified: 08-21-2024
+# Last_Modified: 08-23-2024
 # Last_Modified: 
 # Additional_Notes: Creates on the User's Desktop a directory named Report and for each file that 
 # Additional_Notes: If any Script needs attention, creates a companion file named FILENAME.txt
