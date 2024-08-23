@@ -42,11 +42,16 @@ This project is licensed under the [2-Clause BSD License](https://opensource.org
 3. Make the script executable:
     ```bash
     chmod 0755 report_shellcheck.sh
+    chmod 0755 reportshellcheck_yad.sh
     ```
 
 4. Run the script:
     ```bash
     ./report_shellcheck.sh
+    ```
+    or run the Desktop Version
+    ```bash
+    ./reportshellcheck_yad.sh
     ```
 
 ### Usage
