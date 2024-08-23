@@ -63,7 +63,8 @@ check_scripts() {
             read -r first_line < "$file_path"
             if [[ "$first_line" =~ ^#!.*(bash|sh|ksh|zsh|ash)$ ]]; then
                 # Run shellcheck and capture the output
-                report_output=$(shellcheck -x "$file_path")
+                report_output=$(shellcheck -x "$file_path") # To Report ONLY Critical Error Comment this line out and uncomment the next line.
+                # report_output=$(shellcheck -x -S error "$file_path") # To Report only Critical Errors Uncomment this line comment out previous line.
                 # Check if the output is not empty
                 if [[ -n "$report_output" ]]; then
                     file=$(basename "$file_path")
